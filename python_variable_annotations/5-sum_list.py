@@ -8,4 +8,3 @@ calculating the sum and returning a float
 def sum_list(input_list: List[float]) -> float:
     """ calculating the sum and returning a float """
     return sum(input_list)
-
