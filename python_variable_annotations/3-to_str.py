@@ -4,6 +4,6 @@ transform a string to float
 """
 
 
-def to_str(a: float) -> str:
+def to_str(n: float) -> str:
     """ transform a string to float """
-    return f'{a}'
+    return f'{n}'

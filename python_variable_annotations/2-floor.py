@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
+import math
 """
 Floor a float
 """
 
 
-def floor(a: float) -> int:
+def floor(n: float) -> int:
     """ Floor a float """
-    return a.__floor__()
+    return math.floor(n)

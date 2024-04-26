@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Complex types - list of floats 
+Complex types - list of floats
 """
 
 

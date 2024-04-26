@@ -5,7 +5,7 @@ Complex types - mixed list
 """
 
 
-def sum_mixed_list(mxd_lst: list[Union[float, int]]) -> float:
+def sum_mixed_list(mxd_lst: list[Union[int, float]]) -> float:
     """ Complex types - mixed list """
     sum: float = 0
     for mx in mxd_lst:
