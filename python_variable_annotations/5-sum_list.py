@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 from typing import List
 """
-calculating the sum and returning a float
+ok
 """
 
 
 def sum_list(input_list: List[float]) -> float:
-    """ calculating the sum and returning a float """
+    """ ok """
     return sum(input_list)
