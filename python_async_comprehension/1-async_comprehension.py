@@ -5,6 +5,7 @@ the file contain fn async_generator
 
 import typing
 
+
 async def async_comprehension() -> typing.List[float]:
     """ generate 10 random number """
 
