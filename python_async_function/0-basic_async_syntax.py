@@ -3,7 +3,8 @@
 BASIC ASYNC SYNTAX
 """
 
-import asyncio, random
+import asyncio
+import random
 
 
 async def wait_random(max_delay: int = 10) -> float:
@@ -11,4 +12,3 @@ async def wait_random(max_delay: int = 10) -> float:
     ran = random.uniform(0, float(max_delay))
     await asyncio.sleep(ran)
     return float(ran)
-
