@@ -3,7 +3,7 @@
 Using back the fn and waiting something
 """
 
-import typing 
+import typing
 
 
 async def wait_n(n: int, max_delay: int) -> typing.List[float]:
