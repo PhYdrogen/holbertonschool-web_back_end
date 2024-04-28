@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """
-Using back the fn and waiting something
+Python script for creating and waiting for
+multiple tasks that wait a random amount of time
 """
 
 import typing
 
 
 async def task_wait_n(n: int, max_delay: int) -> typing.List[float]:
-    """ takes 2 int, n, max_delay and output a list of waited time """
+    """ Create and wait for 'n' tasks that each wait for a
+    random amount of time up to 'max_delay' seconds.
+    Returns a list of the waited times in ascending order."""
+
     task_wait_random = __import__('3-tasks').task_wait_random
     arr: typing.List[float] = []
     i: int = 0
