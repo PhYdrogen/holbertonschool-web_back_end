@@ -8,7 +8,7 @@ import asyncio
 import typing
 
 
-async def async_generator() -> typing.AsyncGenerator[float, None]:
+async def async_generator() -> typing.Generator[float, None, None]:
     """ generate 10 random number """
 
     for _ in range(10):
