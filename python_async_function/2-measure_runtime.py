@@ -6,6 +6,7 @@ Using back the fn and mesuring
 import time
 import asyncio
 
+
 def measure_time(n: int, max_delay: int) -> float:
     """ takes 2 int, n, max_delay and output a list of waited time """
 
