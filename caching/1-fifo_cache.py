@@ -5,6 +5,7 @@ File 1
 
 import base_caching
 
+
 class FIFOCache(base_caching.BaseCaching):
     """ First In First Out algorithm """
     def __init__(self):
@@ -28,7 +29,7 @@ class FIFOCache(base_caching.BaseCaching):
 
             return
         self.cache_data[key] = item
-    
+
     def get(self, key):
         """ the method to get from the cache """
         try:

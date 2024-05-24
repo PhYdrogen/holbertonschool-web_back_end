@@ -28,8 +28,6 @@ class MRUCache(base_caching.BaseCaching):
             self.cache_data[key] = item
             self.arr.remove(self.arr[0])
             self.arr.insert(0, key)
-
-
             return
         self.cache_data[key] = item
         self.arr.insert(0, key)

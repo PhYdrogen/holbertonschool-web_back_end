@@ -5,6 +5,7 @@ File 2
 
 import base_caching
 
+
 class LIFOCache(base_caching.BaseCaching):
     """ Last In First Out algorithm """
     def __init__(self):
