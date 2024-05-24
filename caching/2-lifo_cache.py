@@ -1,12 +1,19 @@
 #!/usr/bin/python3
+"""
+File 2
+"""
+
 import base_caching
 
 class LIFOCache(base_caching.BaseCaching):
+    """ Last In First Out algorithm """
     def __init__(self):
+        """ the init fn """
         super().__init__()
         self.last = ""
 
     def put(self, key, item):
+        """ the method to put to the cache """
         lon = len(self.cache_data)
         if lon == self.MAX_ITEMS:
             for keys in self.cache_data.keys():
@@ -24,6 +31,7 @@ class LIFOCache(base_caching.BaseCaching):
         self.last = key
 
     def get(self, key):
+        """ the method to get from the cache """
         try:
             if key is None:
                 return None

@@ -1,11 +1,19 @@
 #!/usr/bin/python3
+"""
+File 1
+"""
+
 import base_caching
 
 class FIFOCache(base_caching.BaseCaching):
+    """ First In First Out algorithm """
     def __init__(self):
+        """ the init method """
+
         super().__init__()
 
     def put(self, key, item):
+        """ the method to put to the cache """
         first = ""
         if len(self.cache_data) == self.MAX_ITEMS:
             for i, keys in enumerate(self.cache_data.keys()):
@@ -22,6 +30,7 @@ class FIFOCache(base_caching.BaseCaching):
         self.cache_data[key] = item
     
     def get(self, key):
+        """ the method to get from the cache """
         try:
             if key is None:
                 return None
