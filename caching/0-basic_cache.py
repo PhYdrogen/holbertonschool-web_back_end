@@ -3,10 +3,10 @@
 File 0
 """
 
-import base_caching
+from base_caching import BaseCaching
 
 
-class BasicCache(base_caching.BaseCaching):
+class BasicCache(BaseCaching):
     """ the most basic cache """
     def __init__(self):
         """ the init fn """
