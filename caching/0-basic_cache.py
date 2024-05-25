@@ -22,10 +22,4 @@ class BasicCache(BaseCaching):
 
     def get(self, key):
         """ method to get from cache """
-
-        try:
-            if key is None:
-                return None
-            return self.cache_data[key]
-        except KeyError:
-            return None
+        return self.cache_data.get(key, None)

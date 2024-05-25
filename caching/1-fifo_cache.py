@@ -34,10 +34,5 @@ class FIFOCache(base_caching.BaseCaching):
         self.cache_data[key] = item
 
     def get(self, key):
-        """ the method to get from the cache """
-        try:
-            if key is None:
-                return None
-            return self.cache_data[key]
-        except KeyError:
-            return None
+        """ method to get from cache """
+        return self.cache_data.get(key, None)

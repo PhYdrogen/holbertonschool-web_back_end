@@ -36,15 +36,9 @@ class LRUCache(base_caching.BaseCaching):
         self.arr.append(key)
 
     def get(self, key):
-        """ the method to get from the cache """
-        try:
-            if key is None:
-                return None
-            try:
-                self.arr.remove(key)
-                self.arr.append(key)
-            except ValueError:
-                pass
-            return self.cache_data[key]
-        except KeyError:
-            return None
+        """ method to get from cache """
+        k = self.cache_data.get(key, None)
+        if k != None:
+            self.arr.remove(key)
+            self.arr.append(key)
+        return k
