@@ -15,6 +15,8 @@ class MRUCache(base_caching.BaseCaching):
 
     def put(self, key, item):
         """ the method to put to the cache """
+        if (key or item) is None:
+            return
         lon = len(self.cache_data)
         if lon >= self.MAX_ITEMS:
             for keys in self.cache_data.keys():
