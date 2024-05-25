@@ -16,7 +16,7 @@ class LRUCache(base_caching.BaseCaching):
     def put(self, key, item):
         """ the method to put to the cache """
         lon = len(self.cache_data)
-        if lon == self.MAX_ITEMS:
+        if lon >= self.MAX_ITEMS:
             for keys in self.cache_data.keys():
                 if keys == key:
                     self.cache_data[key] = item
