@@ -15,7 +15,7 @@ class FIFOCache(base_caching.BaseCaching):
 
     def put(self, key, item):
         """ the method to put to the cache """
-        if (key or item) is None:
+        if key is None or item is None:
             return
 
         first = ""
