@@ -38,7 +38,7 @@ class LRUCache(base_caching.BaseCaching):
     def get(self, key):
         """ method to get from cache """
         k = self.cache_data.get(key, None)
-        if k != None:
+        if k is not None:
             self.arr.remove(key)
             self.arr.append(key)
         return k
