@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """ file simple_helper_function.py """
 
 from typing import Tuple
