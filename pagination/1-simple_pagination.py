@@ -3,7 +3,7 @@
 
 import csv
 import math
-from typing import List
+from typing import List, Tuple
 
 
 class Server:
@@ -38,6 +38,6 @@ class Server:
             return []
         return self.__dataset[t[0]:t[1]]
 
-    def index_range(self, page: int, page_size: int) -> tuple:
+    def index_range(self, page: int, page_size: int) -> Tuple[int, int]:
         """ simple helper function to get the index page """
         return (((page - 1) * page_size), page * page_size)
