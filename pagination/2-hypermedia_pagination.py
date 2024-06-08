@@ -46,7 +46,7 @@ class Server:
         """Get a page of the dataset
         """
         gp = self.get_page(page, page_size)
-        total = len(self.__dataset) // page_size + 1
+        total = (len(self.__dataset) - 1) // page_size + 1
 
         return {"page_size": len(gp),
                 "page": page,
