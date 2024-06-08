@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" file simple_helper_function.py """
+""" file simple_pagination """
 
 import csv
 import math
