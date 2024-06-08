@@ -26,8 +26,7 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        """
-        Get a page of the dataset
+        """Get a page of the dataset
         """
         assert type(page) is int
         assert type(page_size) is int
@@ -39,5 +38,6 @@ class Server:
         return self.__dataset[t[0]:t[1]]
 
     def index_range(self, page: int, page_size: int) -> Tuple[int, int]:
-        """ simple helper function to get the index page """
+        """simple helper function to get the index page
+        """ 
         return (((page - 1) * page_size), page * page_size)
