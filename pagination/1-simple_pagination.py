@@ -30,7 +30,7 @@ class Server:
         """
         assert type(page) is int
         assert type(page_size) is int
-        assert page > 0 and page_size > 0 
+        assert page > 0 and page_size > 0
         self.dataset()
         t = self.index_range(page, page_size)
         if page > len(self.__dataset):
