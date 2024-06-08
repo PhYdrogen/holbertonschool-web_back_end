@@ -51,5 +51,5 @@ class Server:
                 "page": page,
                 "data": gp,
                 "next_page": None if page + 1 > total else page + 1,
-                "previous_page": None if page - 1 <= 0 else page - 1,
+                "prev_page": None if page - 1 <= 0 else page - 1,
                 "total_page": total}
