@@ -8,6 +8,14 @@ import os
 import mysql.connector
 
 
+def filter_datum(fields: List[str],
+                 redaction: str, message: str, separator: str) -> str:
+    """ this function hide the data from the main """
+    patern = "|".join(fields)
+    return re.sub(f'({patern})=.*?{separator}', r'\g<1>' + "="
+                  + redaction + separator, message)
+
+
 class RedactingFormatter(logging.Formatter):
     """ Redacting Formatter class
     """
@@ -24,13 +32,8 @@ class RedactingFormatter(logging.Formatter):
 
     def format(self, record: logging.LogRecord) -> str:
         """ The format method """
-        return self.filter_datum(super().format(record))
-
-    def filter_datum(self, message: str) -> str:
-        """ this function hide the data from the main """
-        patern = "|".join(self.FIELDS)
-        return re.sub(f'({patern})=.*?{self.SEPARATOR}', r'\g<1>' + "="
-                      + self.REDACTION + self.SEPARATOR, message)
+        return filter_datum(self.FIELDS, self.REDACTION,
+                            super().format(record), self.SEPARATOR)
 
 
 PII_FIELDS = ("name", "phone", "ssn", "password", "email")
