@@ -4,6 +4,8 @@
 from typing import List, Tuple
 import re
 import logging
+import os
+import mysql.connector
 
 
 class RedactingFormatter(logging.Formatter):
@@ -46,3 +48,18 @@ def get_logger() -> logging.Logger:
     log.propagate = False
     log.addHandler(sh)
     return log
+
+
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    """ create db conncetion """
+    username_db = os.getenv("PERSONAL_DATA_DB_USERNAME", "root")
+    password_db = os.getenv("PERSONAL_DATA_DB_PASSWORD", "")
+    host_db = os.getenv("PERSONAL_DATA_DB_HOST", "localhost")
+    db_name = os.getenv("PERSONAL_DATA_DB_NAME", "my_db")
+
+    return mysql.connector.connect(
+        host=host_db,
+        user=username_db,
+        password=password_db,
+        database=db_name
+    )
