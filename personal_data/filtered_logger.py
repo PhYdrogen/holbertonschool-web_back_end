@@ -29,3 +29,17 @@ class RedactingFormatter(logging.Formatter):
         patern = "|".join(self.FIELDS)
         return re.sub(f'({patern})=.*?{self.SEPARATOR}', r'\g<1>' + "="
                       + self.REDACTION + self.SEPARATOR, message)
+
+PII_FIELDS = ("name", "phone", "ssn", "password", "email")
+
+def get_logger() -> logging.Logger:
+    sh = logging.StreamHandler()
+    l = logging.getLogger("user_data")
+    ##
+    sh.setLevel(logging.INFO)
+    sh.setFormatter(RedactingFormatter(fields=PII_FIELDS))
+    ##
+    l.setLevel(logging.INFO)
+    l.propagate = False
+    l.addHandler(sh)
+    return l
