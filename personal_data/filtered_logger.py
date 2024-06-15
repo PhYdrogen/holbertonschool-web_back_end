@@ -13,13 +13,12 @@ class RedactingFormatter(logging.Formatter):
     REDACTION = "***"
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
     SEPARATOR = ";"
-    FIELDS: List[str] = []
+    FIELDS: List[str]
 
-    def __init__(self, fields: Tuple[str]):
+    def __init__(self, fields: List[str]):
         """ The init method """
         super(RedactingFormatter, self).__init__(self.FORMAT)
-        for f in fields:
-            self.FIELDS.append(f)
+        self.FIELDS = fields
 
     def format(self, record: logging.LogRecord) -> str:
         """ The format method """
