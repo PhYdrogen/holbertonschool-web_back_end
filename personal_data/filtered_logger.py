@@ -63,3 +63,11 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         password=password_db,
         database=db_name
     )
+
+
+def main():
+    """ main """
+
+
+if __name__ == "__main__":
+    main()
