@@ -22,7 +22,7 @@ class RedactingFormatter(logging.Formatter):
 
     def format(self, record: logging.LogRecord) -> str:
         """ The format method """
-        return self.filter_datum(record.getMessage())
+        return self.filter_datum(super().format(record))
 
     def filter_datum(self, message: str) -> str:
         """ this function hide the data from the main """
