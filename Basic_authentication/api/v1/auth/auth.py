@@ -15,7 +15,8 @@ class Auth:
             return True
         if path[-1] == '/':
             path = path[0: -1]
-        excluded_paths = map(lambda x: x[0:-1] if x[-1] == '/' else x, excluded_paths)
+        excluded_paths = map(lambda x: x[0:-1] if x[-1] == '/' else x,
+                             excluded_paths)
         if path in excluded_paths:
             return False
         return True
