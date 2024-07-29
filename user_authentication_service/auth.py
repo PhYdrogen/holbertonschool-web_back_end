@@ -5,7 +5,9 @@ AUTH file
 import bcrypt
 from db import DB
 from user import User
+import sqlalchemy
 from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import InvalidRequestError
 import uuid
 
 
@@ -55,5 +57,15 @@ class Auth:
             user.session_id = _generate_uuid()
             self._db._session.commit()
             return user.session_id
+        except NoResultFound:
+            return None
+
+    def get_user_from_session_id(self, session_id: str) -> User:
+        """ find user by session_id """
+        try:
+            if session_id is None:
+                return None
+            user = self._db.find_user_by(session_id=session_id)
+            return user
         except NoResultFound:
             return None
