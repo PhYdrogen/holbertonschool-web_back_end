@@ -40,10 +40,10 @@ class DB:
         return user
 
     def find_user_by(self, **kwargs: str) -> User:
-            """ find user in db """
-            if not kwargs:
-                raise InvalidRequestError
-            user = self._session.query(User).filter_by(**kwargs).first()
-            if user is None:
-                raise NoResultFound
-            return user
+        """ find user in db """
+        if not kwargs:
+            raise InvalidRequestError
+        user = self._session.query(User).filter_by(**kwargs).first()
+        if user is None:
+            raise NoResultFound
+        return user
