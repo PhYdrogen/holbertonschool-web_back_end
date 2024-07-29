@@ -12,7 +12,7 @@ class User(Base):
     """ User class """
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
-    email = Column(String(255))
-    hashed_password = Column(String(255))
-    session_id = Column(String(255))
-    reset_token = Column(String(255))
+    email = Column(String(250))
+    hashed_password = Column(String(250))
+    session_id = Column(String(250))
+    reset_token = Column(String(250))
