@@ -13,7 +13,7 @@ import uuid
 
 def _hash_password(password: str) -> bytes:
     """ hash password for security """
-    return bcrypt.hashpw(password.encode("UTF-8"), bcrypt.gensalt())
+    return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
 
 
 def _generate_uuid() -> str:
@@ -42,7 +42,7 @@ class Auth:
         """ check is valid login """
         try:
             user = self._db.find_user_by(email=email)
-            return bcrypt.checkpw(password.encode("utf-8"),
+            return bcrypt.checkpw(password.encode(),
                                   user.hashed_password)
         except NoResultFound:
             return False
