@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import utils
 import unittest
-from utils import memoize
 from parameterized import parameterized
 from unittest.mock import Mock
 from unittest.mock import patch
@@ -52,7 +51,7 @@ class TestMemoize(unittest.TestCase):
             def a_method(self):
                 return 42
 
-            @memoize
+            @utils.memoize
             def a_property(self):
                 return self.a_method()
 
