@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """ Module for testing client """
 
+import json
 import unittest
-import client
-from unittest import mock
+from unittest.mock import Mock, PropertyMock, patch
+
+from client import GithubOrgClient
 from fixtures import TEST_PAYLOAD
-from parameterized import parameterized
-from parameterized import parameterized_class
+from parameterized import parameterized, parameterized_class
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -16,10 +17,10 @@ class TestGithubOrgClient(unittest.TestCase):
         ('google'),
         ('abc')
     ])
-    @mock.patch('client.get_json')
+    @patch('client.get_json')
     def test_org(self, input, mock):
         """Test that GithubOrgClient.org returns the correct value"""
-        test_class = client.GithubOrgClient(input)
+        test_class = GithubOrgClient(input)
         test_class.org()
         mock.assert_called_once_with(f'https://api.github.com/orgs/{input}')
 
@@ -27,15 +28,15 @@ class TestGithubOrgClient(unittest.TestCase):
         """ Test that the result of _public_repos_url is the expected one
         based on the mocked payload
         """
-        with mock.patch('client.GithubOrgClient.org',
-                   new_callable=mock.PropertyMock) as mocked:
+        with patch('client.GithubOrgClient.org',
+                   new_callable=PropertyMock) as mock:
             payload = {"repos_url": "World"}
-            mocked.return_value = payload
-            test_class = client.GithubOrgClient('test')
+            mock.return_value = payload
+            test_class = GithubOrgClient('test')
             result = test_class._public_repos_url
             self.assertEqual(result, payload["repos_url"])
 
-    @mock.patch('client.get_json')
+    @patch('client.get_json')
     def test_public_repos(self, mock_json):
         """
         Test that the list of repos is what you expect from the chosen payload.
@@ -44,11 +45,11 @@ class TestGithubOrgClient(unittest.TestCase):
         json_payload = [{"name": "Google"}, {"name": "Twitter"}]
         mock_json.return_value = json_payload
 
-        with mock.patch('client.GithubOrgClient._public_repos_url',
-                   new_callable=mock.PropertyMock) as mock_public:
+        with patch('client.GithubOrgClient._public_repos_url',
+                   new_callable=PropertyMock) as mock_public:
 
             mock_public.return_value = "hello/world"
-            test_class = client.GithubOrgClient('test')
+            test_class = GithubOrgClient('test')
             result = test_class.public_repos()
 
             check = [i["name"] for i in json_payload]
@@ -63,7 +64,7 @@ class TestGithubOrgClient(unittest.TestCase):
     ])
     def test_has_license(self, repo, license_key, expected):
         """ unit-test for GithubOrgClient.has_license """
-        result = client.GithubOrgClient.has_license(repo, license_key)
+        result = GithubOrgClient.has_license(repo, license_key)
         self.assertEqual(result, expected)
 
 
@@ -90,13 +91,13 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
                       cls.org_payload, cls.repos_payload
                   ]
                   }
-        cls.get_patcher = mock.patch('requests.get', **config)
+        cls.get_patcher = patch('requests.get', **config)
 
         cls.mock = cls.get_patcher.start()
 
     def test_public_repos(self):
         """ Integration test: public repos"""
-        test_class = client.GithubOrgClient("google")
+        test_class = GithubOrgClient("google")
 
         self.assertEqual(test_class.org, self.org_payload)
         self.assertEqual(test_class.repos_payload, self.repos_payload)
@@ -106,7 +107,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
     def test_public_repos_with_license(self):
         """ Integration test for public repos with License """
-        test_class = client.GithubOrgClient("google")
+        test_class = GithubOrgClient("google")
 
         self.assertEqual(test_class.public_repos(), self.expected_repos)
         self.assertEqual(test_class.public_repos("XLICENSE"), [])
