@@ -3,7 +3,7 @@
 
 import unittest
 import client
-
+from unittest import mock
 from fixtures import TEST_PAYLOAD
 from parameterized import parameterized
 from parameterized import parameterized_class
@@ -16,7 +16,7 @@ class TestGithubOrgClient(unittest.TestCase):
         ('google'),
         ('abc')
     ])
-    @unittest.mock.patch('client.get_json')
+    @mock.patch('client.get_json')
     def test_org(self, input, mock):
         """Test that GithubOrgClient.org returns the correct value"""
         test_class = client.GithubOrgClient(input)
@@ -27,15 +27,15 @@ class TestGithubOrgClient(unittest.TestCase):
         """ Test that the result of _public_repos_url is the expected one
         based on the mocked payload
         """
-        with unittest.mock.patch('client.GithubOrgClient.org',
-                   new_callable=unittest.mock.PropertyMock) as mock:
+        with mock.patch('client.GithubOrgClient.org',
+                   new_callable=mock.PropertyMock) as mocked:
             payload = {"repos_url": "World"}
-            mock.return_value = payload
+            mocked.return_value = payload
             test_class = client.GithubOrgClient('test')
             result = test_class._public_repos_url
             self.assertEqual(result, payload["repos_url"])
 
-    @unittest.mock.patch('client.get_json')
+    @mock.patch('client.get_json')
     def test_public_repos(self, mock_json):
         """
         Test that the list of repos is what you expect from the chosen payload.
@@ -44,8 +44,8 @@ class TestGithubOrgClient(unittest.TestCase):
         json_payload = [{"name": "Google"}, {"name": "Twitter"}]
         mock_json.return_value = json_payload
 
-        with unittest.mock.patch('client.GithubOrgClient._public_repos_url',
-                   new_callable=unittest.mock.PropertyMock) as mock_public:
+        with mock.patch('client.GithubOrgClient._public_repos_url',
+                   new_callable=mock.PropertyMock) as mock_public:
 
             mock_public.return_value = "hello/world"
             test_class = client.GithubOrgClient('test')
@@ -90,7 +90,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
                       cls.org_payload, cls.repos_payload
                   ]
                   }
-        cls.get_patcher = unittest.mock.patch('requests.get', **config)
+        cls.get_patcher = mock.patch('requests.get', **config)
 
         cls.mock = cls.get_patcher.start()
 
