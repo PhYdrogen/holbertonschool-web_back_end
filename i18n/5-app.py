@@ -42,6 +42,7 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
+
 def get_user() -> Dict:
     """ Get the user based to query parameter 'login_as'
     """
@@ -55,6 +56,7 @@ def get_user() -> Dict:
         return None
 
     return users.get(id)
+
 
 @app.before_request
 def before_request():

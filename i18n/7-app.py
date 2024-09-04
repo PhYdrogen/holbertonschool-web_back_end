@@ -48,6 +48,7 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
+
 def get_user() -> Dict:
     """ Get the user based to query parameter 'login_as'
     """
@@ -62,6 +63,7 @@ def get_user() -> Dict:
 
     return users.get(id)
 
+
 @app.before_request
 def before_request():
     """ Setup app state before every request
@@ -70,6 +72,7 @@ def before_request():
 
     if user is not None:
         g.user = user
+
 
 def get_timezone() -> str:
     """ Find the best timezone to use based on query and user
