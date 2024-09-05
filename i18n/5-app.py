@@ -61,10 +61,7 @@ def get_user() -> Dict:
 def before_request():
     """ Setup app state before every request
     """
-    user = get_user()
-    g.user = None
-    if user is not None:
-        g.user = user
+    g.user = get_user()
 
 
 babel = Babel(app, locale_selector=get_locale)
