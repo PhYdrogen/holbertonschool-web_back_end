@@ -31,7 +31,6 @@ def get_locale() -> str:
         return locale
 
     if g.user:
-        print("ok")
         user_locale = g.user.get("locale")
         if user_locale and user_locale in Config.LANGUAGES:
             return user_locale
