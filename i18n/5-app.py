@@ -22,10 +22,9 @@ babel = Babel(app)
 @app.route("/")
 def index():
     """ index """
-    return render_template("1-index.html")
+    return render_template("5-index.html", username=g.user)
 
 
-@babel.localeselector
 def get_locale() -> str:
     """ get local languages """
     locale = request.args.get("locale")
@@ -63,6 +62,12 @@ def before_request():
     """ Setup app state before every request
     """
     user = get_user()
-
+    g.user = None
     if user is not None:
         g.user = user
+
+
+babel = Babel(app, locale_selector=get_locale)
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5001)

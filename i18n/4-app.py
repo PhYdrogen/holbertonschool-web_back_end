@@ -15,16 +15,14 @@ class Config():
 
 app = Flask(__name__)
 app.config.from_object(Config)
-babel = Babel(app)
 
 
 @app.route("/")
 def index():
     """ index """
-    return render_template("1-index.html")
+    return render_template("4-index.html")
 
 
-@babel.localeselector
 def get_locale() -> str:
     """ get local languages """
     locale = request.args.get("locale")
@@ -32,3 +30,9 @@ def get_locale() -> str:
         return locale
 
     return request.accept_languages.best_match(Config.LANGUAGES)
+
+
+babel = Babel(app, locale_selector=get_locale)
+
+if __name__ == "__main__":
+    app.run()
