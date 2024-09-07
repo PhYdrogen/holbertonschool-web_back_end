@@ -1,23 +1,24 @@
 """ Exercice file for redis """
 from redis import Redis
-from uuid import uuid4
-from typing import Callable, Union
+import uuid
+from typing import Callable, Union, Optional
 
 class Cache:
     """A simple cache"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Init the cache"""
         self._redis = Redis()
         self._redis.flushdb()
 
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """Store data in the cache"""
-        key = str(uuid4())
+        key = str(uuid.uuid4())
         self._redis.set(key, data)
         return key
     
-    def get(self, key: str, fn: Callable | None) -> Union[str, bytes, int, float]:
+    def get(self, key: str, fn: Optional[Callable] = None
+            ) -> Optional[Union[str, bytes, int, float]]:
         """Get data from the cache"""
         if fn is None:
             return self._redis.get(key)
