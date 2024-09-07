@@ -1,5 +1,5 @@
 """ Exercice file for redis """
-from redis import Redis
+import redis
 import uuid
 from typing import Callable, Union, Optional
 
@@ -9,7 +9,7 @@ class Cache:
 
     def __init__(self) -> None:
         """Init the cache"""
-        self._redis = Redis()
+        self._redis = redis.Redis()
         self._redis.flushdb()
 
     def store(self, data: Union[str, bytes, int, float]) -> str:
