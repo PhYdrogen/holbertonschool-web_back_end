@@ -6,14 +6,14 @@ from typing import Callable, Union, Optional
 import functools
 
 
-def count_calls(fn: Callable) -> Callable:
+def count_calls(method: Callable) -> Callable:
     """Count the number of calls to a function"""
-    @functools.wraps(fn)
+    @functools.wraps(method)
     def wrapper(self, *args, **kwargs):
         """Wrap the function"""
-        k = fn.__qualname__
-        self._redis.incr(k)
-        return fn(self, *args, **kwargs)
+        key = method.__qualname__
+        self._redis.incr(key)
+        return method(self, *args, **kwargs)
     return wrapper
 
 
