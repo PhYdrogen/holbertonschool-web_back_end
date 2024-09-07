@@ -8,13 +8,11 @@ from functools import wraps
 
 def count_calls(fn: Callable) -> Callable:
     """Count the number of calls to a function"""
-
     @wraps(fn)
-    def wrapper(*args, **kwds):
+    def wrapper(self, *args, **kwds):
         """Wrap the function"""
-        cache = args[0]
-        cache._redis.incr(fn.__qualname__)
-        return fn(*args, **kwds)
+        self._redis.incr(fn.__qualname__)
+        return fn(self, *args, **kwds)
     return wrapper
 
 
