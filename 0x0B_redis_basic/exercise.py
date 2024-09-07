@@ -14,7 +14,7 @@ def count_calls(fn: Callable) -> Callable:
         """Wrap the function"""
         cache = args[0]
         cache._redis.incr(fn.__qualname__)
-        fn(*args, **kwds)
+        return fn(*args, **kwds)
     return wrapper
 
 
