@@ -8,11 +8,12 @@ from functools import wraps
 
 def count_calls(fn: Callable) -> Callable:
     """Count the number of calls to a function"""
-    cache = redis.Redis()
 
     @wraps(fn)
     def wrapper(*args, **kwds):
-        cache.incr(fn.__qualname__)
+        """Wrap the function"""
+        cache = args[0]
+        cache._redis.incr(fn.__qualname__)
         fn(*args, **kwds)
     return wrapper
 
