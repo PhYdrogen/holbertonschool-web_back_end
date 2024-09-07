@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """ Exercice file for redis """
 import redis
 import uuid
