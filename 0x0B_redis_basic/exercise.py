@@ -3,6 +3,7 @@ from redis import Redis
 import uuid
 from typing import Callable, Union, Optional
 
+
 class Cache:
     """A simple cache"""
 
@@ -16,7 +17,7 @@ class Cache:
         key = str(uuid.uuid4())
         self._redis.set(key, data)
         return key
-    
+
     def get(self, key: str, fn: Optional[Callable] = None
             ) -> Optional[Union[str, bytes, int, float]]:
         """Get data from the cache"""
