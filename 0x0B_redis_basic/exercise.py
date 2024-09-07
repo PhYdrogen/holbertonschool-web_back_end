@@ -3,16 +3,16 @@
 import redis
 import uuid
 from typing import Callable, Union, Optional
-from functools import wraps
+import functools
 
 
 def count_calls(fn: Callable) -> Callable:
     """Count the number of calls to a function"""
-    @wraps(fn)
-    def wrapper(self, *args, **kwds):
+    @functools.wraps(fn)
+    def wrapper(self, *args, **kwargs):
         """Wrap the function"""
         self._redis.incr(fn.__qualname__)
-        return fn(self, *args, **kwds)
+        return fn(self, *args, **kwargs)
     return wrapper
 
 
