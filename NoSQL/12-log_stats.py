@@ -13,7 +13,7 @@ if __name__ == "__main__":
     """ connect to the logs database and connect to nginx collection """
     method = ["GET", "POST", "PUT", "PATCH", "DELETE"]
     """ list of rest method """
-    print("{} logs\nMethods:".format(c.estimated_document_count()))
+    print("{} logs\nMethods:".format(c.count_documents({})))
     """ first print to output the list of logs """
     for m in method:
         """ loop in each method """
