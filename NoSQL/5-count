@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+// count the collections
 mongosh
 use $mongo
 db.school.count();

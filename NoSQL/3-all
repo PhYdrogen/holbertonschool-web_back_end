@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+// finding all
 mongosh
 use $mongo
 db.school.find();

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+// insert in my db
 mongosh
 use $mongo
 db.school.insertOne( { "name": "Holberton school" } );

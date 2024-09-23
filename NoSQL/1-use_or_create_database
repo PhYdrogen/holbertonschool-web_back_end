@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+// using the db
 mongosh
 use my_db
 exit

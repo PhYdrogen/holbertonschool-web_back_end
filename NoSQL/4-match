@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+// do a perfect match
 mongosh
 use $mongo
 db.school.find( { "name": "Holberton school" } );
