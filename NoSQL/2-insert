@@ -1,5 +1,5 @@
 // insert in my db
 mongosh
-use $mongo
+use mongo
 db.school.insertOne( { "name": "Holberton school" } );
 exit
