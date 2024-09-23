@@ -1,0 +1,2 @@
+// update the collections
+db.school.delete({"name":"Holberton school"});
