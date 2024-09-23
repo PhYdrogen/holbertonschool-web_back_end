@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+// listing my db
 mongosh
 show dbs
 exit
