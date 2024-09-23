@@ -1,5 +1,4 @@
 // insert in my db
 mongosh
-use $1
 db.school.insertOne( { "name": "Holberton school" } );
 exit

@@ -1,5 +1,4 @@
 // finding all
 mongosh
-use $mongo
 db.school.find();
 exit

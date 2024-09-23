@@ -1,5 +1,4 @@
 // count the collections
 mongosh
-use $mongo
 db.school.count();
 exit
