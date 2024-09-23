@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+mongosh
+use $mongo
+db.school.find();
+exit

@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+mongosh
+show dbs
+exit
