@@ -1,4 +1,2 @@
 // count the collections
-mongosh
-db.school.count();
-exit
+db.school.countDocuments();

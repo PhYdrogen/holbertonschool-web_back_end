@@ -1,4 +1,2 @@
 // do a perfect match
-mongosh
 db.school.find( { "name": "Holberton school" } );
-exit

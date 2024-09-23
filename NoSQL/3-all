@@ -1,4 +1,2 @@
 // finding all
-mongosh
 db.school.find();
-exit
