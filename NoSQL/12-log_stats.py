@@ -19,5 +19,5 @@ if __name__ == "__main__":
         """ loop in each method """
         print("    method {}: {}".format(m, c.count_documents({"method": m})))
         """ print each method with manual tab """
-    print("{} status check".format(c.count_documents({"path": "/status"})))
+    print("{} status check".format(c.count_documents({"method": "GET", "path": "/status"})))
     """ last print please save my family"""
