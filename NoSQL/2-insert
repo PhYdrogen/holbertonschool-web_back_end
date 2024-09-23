@@ -1,4 +1,2 @@
 // insert in my db
-mongosh
 db.school.insertOne( { "name": "Holberton school" } );
-exit
