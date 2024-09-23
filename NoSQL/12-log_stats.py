@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-a script that provides some stats about a nginx dump logs stored in mongo
+a script that provides some stats about a nginx dump logs stored in mongo xxx
 """
 from pymongo import MongoClient
 
