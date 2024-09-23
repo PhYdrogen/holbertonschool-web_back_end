@@ -11,5 +11,5 @@ if __name__ == "__main__":
     method = ["GET", "POST", "PUT", "PATCH", "DELETE"]
     print("{} logs\nMethods: ".format(c.estimated_document_count()))
     for m in method:
-        print("\tmethod {}: {}".format(m, c.count_documents({"method": m})))
+        print("    method {}: {}".format(m, c.count_documents({"method": m})))
     print("{} status check".format(c.count_documents({"path": "/status"})))
