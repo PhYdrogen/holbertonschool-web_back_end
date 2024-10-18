@@ -1,4 +1,4 @@
 .venv
 main.py
 *.pyc
-ES6_basic/node_modules/
+*/node_modules/
