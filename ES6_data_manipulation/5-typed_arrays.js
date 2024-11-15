@@ -5,6 +5,6 @@ export default function createInt8TypedArray(length, position, value) {
     i8view[position] = value;
     return new DataView(buffer);
   } catch (e) {
-    throw Error('Position outside range');
+    throw e;
   }
 }
