@@ -1,6 +1,7 @@
 export default function getListStudentIds(students) {
-  if (typeof students !== 'object') {
+  try {
+    return students.map((student) => student.id);
+  } catch (error) {
     return [];
   }
-  return students.map((student) => student.id);
 }
