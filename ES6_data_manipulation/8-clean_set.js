@@ -3,5 +3,8 @@ export default function cleanSet(set, startString) {
     return '';
   }
   const vs = [...set];
-  return vs.filter((val) => val.startsWith(startString)).map((val) => val.replace(startString, '')).map(val => val.replace('-', '')).join('-');
+  //   const arr = [];
+  //   vs.filter((val) => val.startsWith(startString)).map((e) => arr.push(e.replace(startString, '')));
+  //   return arr.filter((e) => e != '').join('-');
+  return vs.filter((val) => val.startsWith(startString)).map((val) => val.replace(startString, '')).filter((val) => val != startString).join('-');
 }
