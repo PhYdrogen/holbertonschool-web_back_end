@@ -4,7 +4,7 @@ export default function cleanSet(set, startString) {
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ set: [...set], startString }),
   });
-  if (startString.length === 0 || typeof startString !== 'string') {
+  if (typeof startString !== 'string' || startString.length === 0) {
     return '';
   }
   const vs = [...set];
