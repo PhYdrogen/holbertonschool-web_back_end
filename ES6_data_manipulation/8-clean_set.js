@@ -8,5 +8,5 @@ export default function cleanSet(set, startString) {
     return '';
   }
   const vs = [...set];
-  return vs.filter((val) => val.startsWith(startString)).map((val) => val.replace(startString, '')).join('-');
+  return vs.filter((val) => val.startsWith(startString) && val != null).map((val) => val.replace(startString, '')).join('-');
 }
