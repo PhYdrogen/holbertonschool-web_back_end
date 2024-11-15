@@ -1,7 +1,7 @@
 export default function updateUniqueItems(map) {
-map.forEach((v,k) => {
+  map.forEach((v, k) => {
     if (v === 1) {
-        map.set(k, 100)
+      map.set(k, 100);
     }
-});
+  });
 }
