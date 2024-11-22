@@ -1,5 +1,7 @@
 const fs = require('node:fs');
 
+const fetch = require('node-fetch');
+
 module.exports = function countStudents(path) {
   let data;
   try {
