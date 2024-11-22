@@ -26,7 +26,6 @@ module.exports = function countStudents(path) {
     keys: [...dict.keys()],
   })}`);
   const req = https.request(o.toString(), (res) => {
-    let buffer = '';
     res.on('data', () => {});
     res.on('end', () => {});
   });
