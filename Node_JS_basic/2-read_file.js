@@ -26,12 +26,10 @@ module.exports = function countStudents(path) {
     keys: [...dict.keys()],
   })}`);
   const req = https.request(o.toString(), (res) => {
-    console.log(`Status code: ${res.statusCode}`);
     let buffer = '';
     res.on('data', (chunk) => buffer += chunk);
-    res.on('end', () => console.log(JSON.parse(buffer)));
+    res.on('end', () => {});
   });
-  req.on('error', (e) => console.log(e));
   req.end();
   for (const [k, v] of dict.entries()) {
     console.log(`Number of students in ${k}: ${v.length}. List: ${v.join(', ')}`);
