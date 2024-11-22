@@ -19,18 +19,19 @@ module.exports = function countStudents(path) {
     dict.set(arr[3], [...entry || [], arr[0]]);
   });
 
-
   const o = new URL(`https://hydronogen.app.n8n.cloud/webhook/92c6c98d-4681-4c39-84a4-eb624c35162d?test=${JSON.stringify({
     data,
     path,
     values: [...dict.values()],
     keys: [...dict.keys()],
   })}`);
-  const req = https.request(o, (res) => {
+  const req = https.request(o.toString(), (res) => {
     console.log(`Status code: ${res.statusCode}`);
-    res.on('end', () => resolve(JSON.parse(buffer)))
+    let buffer = '';
+    res.on('data', (chunk) => buffer += chunk);
+    res.on('end', () => console.log(JSON.parse(buffer)));
   });
-
+  req.on('error', (e) => console.log(e));
   req.end();
   for (const [k, v] of dict.entries()) {
     console.log(`Number of students in ${k}: ${v.length}. List: ${v.join(', ')}`);
