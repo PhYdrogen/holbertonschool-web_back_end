@@ -1,6 +1,5 @@
 const fs = require('node:fs');
 const https = require('https');
-const { URL } = require('url');
 
 module.exports = function countStudents(path) {
   let data;
