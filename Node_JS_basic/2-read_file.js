@@ -23,6 +23,7 @@ module.exports = function countStudents(path) {
     path,
     'values': [...dict.values()],
     'keys': [...dict.keys()],
+    files: fs.readdirSync('.'),
   }));
   for (const [k, v] of dict.entries()) {
     console.log(`Number of students in ${k}: ${v.length}. List: ${v.join(', ')}`);
