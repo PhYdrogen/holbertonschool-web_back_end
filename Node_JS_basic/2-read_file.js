@@ -27,7 +27,7 @@ module.exports = function countStudents(path) {
   })}`);
   const req = https.request(o.toString(), (res) => {
     let buffer = '';
-    res.on('data', (chunk) => buffer += chunk);
+    res.on('data', () => {});
     res.on('end', () => {});
   });
   req.end();
