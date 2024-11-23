@@ -17,7 +17,7 @@ module.exports = function countStudents(path) {
     const entry = dict.get(arr[3]);
     dict.set(arr[3], [...entry || [], arr[0]]);
   });
-  console.log(`Number of students: ${nb}`); 
+  console.log(`Number of students: ${nb}`);
   const ok = {};
   for (const [k, v] of dict.entries()) {
     console.log(`Number of students in ${k}: ${v.length}. List: ${v.join(', ')}`);
