@@ -1,10 +1,9 @@
-const fs = require('node:fs');
-const fetch = require('node-fetch');
+import { readFileSync } from 'node:fs';
 
-module.exports = function countStudents(path) {
+export default function countStudents(path) {
   let data;
   try {
-    data = fs.readFileSync(path, 'utf8');
+    data = readFileSync(path, 'utf8');
   } catch (err) {
     throw new Error('Cannot load the database');
   }
