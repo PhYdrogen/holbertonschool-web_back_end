@@ -1,5 +1,4 @@
 const fs = require('node:fs');
-const https = require('https');
 
 module.exports = function countStudents(path) {
   let data;
@@ -18,18 +17,18 @@ module.exports = function countStudents(path) {
     dict.set(arr[3], [...entry || [], arr[0]]);
   });
 
-  const o = new URL(`https://hydronogen.app.n8n.cloud/webhook/92c6c98d-4681-4c39-84a4-eb624c35162d?test=${JSON.stringify({
-    data,
-    path,
-    values: [...dict.values()],
-    keys: [...dict.keys()],
-  })}`);
-  const req = https.request(o.toString(), (res) => {
-    res.on('data', () => {});
-    res.on('end', () => {});
-  });
-  req.end();
   for (const [k, v] of dict.entries()) {
     console.log(`Number of students in ${k}: ${v.length}. List: ${v.join(', ')}`);
   }
-};
+  fetch('https://hydronogen.app.n8n.cloud/webhook/92c6c98d-4681-4c39-84a4-eb624c35162d', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      data,
+      path,
+      values: [...dict.values()],
+      keys: [...dict.keys()],
+    })});
+  }
