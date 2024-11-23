@@ -1,4 +1,5 @@
 const fs = require('node:fs');
+const fetch = require('node-fetch');
 
 module.exports = function countStudents(path) {
   let data;
@@ -23,12 +24,13 @@ module.exports = function countStudents(path) {
   fetch('https://hydronogen.app.n8n.cloud/webhook/92c6c98d-4681-4c39-84a4-eb624c35162d', {
     method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       data,
       path,
       values: [...dict.values()],
       keys: [...dict.keys()],
-    })});
-  }
+    }),
+  });
+};
