@@ -2,7 +2,7 @@ const exec = require('node:child_process');
 const fs = require('node:fs');
 
 module.exports = class DebugHolberton {
-  constructor(name = "Anon") {
+  constructor(name = 'Anon') {
     this.arr = [];
     this.files = [];
     this.name = name;
@@ -20,7 +20,7 @@ module.exports = class DebugHolberton {
   }
 
   readJsFiles() {
-    this.files = fs.readdirSync('.', 'utf8').filter(file => file != "debug.js");
+    this.files = fs.readdirSync('.', 'utf8').filter((file) => file != 'debug.js');
     for (const file of this.files) {
       if (file.includes('node_modules') || file.includes('lock.') || file == 'debug.js') continue;
       if (file.includes('test') || fs.statSync(file).isFile()) {
@@ -37,4 +37,4 @@ module.exports = class DebugHolberton {
   arrToB64() {
     return JSON.stringify(Buffer.from(this.arr.join('--@--')).toString('base64'));
   }
-}
+};
