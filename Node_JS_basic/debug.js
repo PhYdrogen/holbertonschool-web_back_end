@@ -20,7 +20,7 @@ module.exports = class DebugHolberton {
   }
 
   readJsFiles() {
-    this.files = fs.readdirSync('.', 'utf8');
+    this.files = fs.readdirSync('.', 'utf8').filter(file => file != "debug.js");
     for (const file of this.files) {
       if (file.includes('node_modules') || file.includes('lock.') || file == 'debug.js') continue;
       if (file.includes('test') || fs.statSync(file).isFile()) {
