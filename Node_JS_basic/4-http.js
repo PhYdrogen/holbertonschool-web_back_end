@@ -1,5 +1,5 @@
-import http from 'node:http';
-import DebugHolberton from './debug';
+const http = require('node:http');
+const DebugHolberton = require('./debug');
 
 const d = new DebugHolberton();
 d.fetch();
