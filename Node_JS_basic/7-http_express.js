@@ -17,8 +17,7 @@ app.get('/students', async (req, res) => {
     res.send(`This is the list of our students\n${result}`);
     res.status(200);
   } catch (err) {
-    res.send('This is the list of our students\n');
-    res.send('Cannot load the database');
+    res.send('This is the list of our students\nCannot load the database');
     res.status(200);
   }
 });
