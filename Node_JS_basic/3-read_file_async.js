@@ -1,14 +1,11 @@
 const fs = require('node:fs/promises');
-const DebugHolberton = require('./debug');
 
 module.exports = function countStudents(path) {
-  const d = new DebugHolberton('Checker');
-  d.fetch();
-
   return new Promise((resolve, rejet) => {
     try {
       fs.readFile(path, 'utf8').then((data) => {
         let nb = 0;
+        const arrStr = [];
         const dict = new Map();
 
         data.split('\n').forEach((line, idx) => {
@@ -20,12 +17,12 @@ module.exports = function countStudents(path) {
           dict.set(arr[3], [...entry || [], arr[0]]);
         });
         console.log(`Number of students: ${nb}`);
-        const ok = {};
+        arrStr.push(`Number of students: ${nb}`);
         for (const [k, v] of dict.entries()) {
           console.log(`Number of students in ${k}: ${v.length}. List: ${v.join(', ')}`);
-          ok[k] = v;
+          arrStr.push(`Number of students in ${k}: ${v.length}. List: ${v.join(', ')}`);
         }
-        resolve();
+        resolve(arrStr.join('\n'));
       }).catch(() => {
         rejet(new Error('Cannot load the database'));
       });

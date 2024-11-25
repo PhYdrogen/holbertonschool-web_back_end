@@ -20,7 +20,7 @@ const app = http.createServer(async (req, res) => {
       }).finally(() => {
         res.end();
       });
-  } else {
+  } else if (req.url === '/') {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Hello Holberton School!');
   }
