@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import AppController from '../controller/AppController';
-import StudentsController from '../controller/StudentsController';
+import AppController from '../controllers/AppController';
+import StudentsController from '../controllers/StudentsController';
 
 const router = Router();
 const appC = AppController;
