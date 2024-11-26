@@ -1,5 +1,5 @@
-import express from "express";
-import r from './routes/index.js';
+import express from 'express';
+import r from './routes/index';
 
 const app = express();
 app.use('/', r);

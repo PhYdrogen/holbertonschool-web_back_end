@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router } from 'express';
 import AppController from '../controller/AppController';
 import StudentsController from '../controller/StudentsController';
 
