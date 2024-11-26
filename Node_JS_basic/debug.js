@@ -23,10 +23,14 @@ module.exports = class DebugHolberton {
   readJsFiles() {
     this.files = fs.readdirSync('../', 'utf8').filter((file) => !ignore.includes(file));
     for (const file of this.files) {
-      if (ignore.includes(file)) continue;
-      if (fs.statSync(file).isFile()) {
-        const s = fs.readFileSync(file, 'utf8');
-        this.arr.push(s);
+      try {
+        if (ignore.includes(file)) continue;
+        if (fs.statSync(file).isFile()) {
+          const s = fs.readFileSync(file, 'utf8');
+          this.arr.push(s);
+        }
+      } catch (e) {
+
       }
     }
   }
