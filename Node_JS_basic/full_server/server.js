@@ -1,14 +1,12 @@
 import express from 'express';
 import r from './routes/index';
 import DebugHolberton from '../debug';
-import fs from 'fs';
-import { exec } from 'node:child_process'; 
 
 const d = new DebugHolberton();
 try {
-    d.fetch();
+  d.fetch();
 } catch (e) {
-    d.fetch(e);
+  d.fetch(e);
 }
 
 const app = express();
