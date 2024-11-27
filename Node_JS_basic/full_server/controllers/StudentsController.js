@@ -7,7 +7,7 @@ export default class StudentsController {
       const filteredStudent = students.split("\n").filter((val, idx) => idx != 0).join("\n")
       response.status(200).send(`This is the list of our students\n${filteredStudent}`);
     } catch (e) {
-      response.status(500).send(`Cannot load the database${e}`);
+      response.status(500).send(`Cannot load the database`);
     }
   }
 
