@@ -4,10 +4,10 @@ export default class StudentsController {
   static async getAllStudents(request, response) {
     try {
       const students = await readDatabase(process.argv[2]);
-      const filteredStudent = students.split("\n").filter((val, idx) => idx != 0).join("\n")
+      const filteredStudent = students.split('\n').filter((val, idx) => idx !== 0).join('\n');
       response.status(200).send(`This is the list of our students\n${filteredStudent}`);
     } catch (e) {
-      response.status(500).send(`Cannot load the database`);
+      response.status(500).send('Cannot load the database');
     }
   }
 
