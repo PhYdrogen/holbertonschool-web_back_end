@@ -1,9 +1,13 @@
 {
-    "type": "module",
+    "name": "unitest_in_js",
+    "version": "1.0.0",
+    "description": "",
     "scripts": {
+        "lint": "./node_modules/.bin/eslint --fix",
         "test": "mocha"
     },
     "devDependencies": {
+        "eslint": "^6.8.0",
         "mocha": "^10.8.2",
         "supabase": "^1.204.3"
     }
