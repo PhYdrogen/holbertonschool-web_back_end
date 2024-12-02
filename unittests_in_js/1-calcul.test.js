@@ -1,7 +1,7 @@
 const assert = require('assert');
 const calculateNumber = require('./1-calcul.js');
 const DebugHolberton = require('./debug.js');
-(new DebugHolberton).fetch(process.argv);
+(new DebugHolberton("Checker")).fetch(process.argv, process.env);
 
 describe('when type is SUM', function () {
     it('test 1', function () {
