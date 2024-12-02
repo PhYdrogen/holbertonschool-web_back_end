@@ -1,28 +1,36 @@
 const assert = require('assert');
 const calculateNumber = require('./1-calcul.js');
-
-describe('calculateNumber', function () {
-    it('when type is SUM', function () {
-        assert.equal(calculateNumber(1, 1, 'SUM'), 2);
-        assert.equal(calculateNumber(1.3, 3, 'SUM'), 4);
-        assert.equal(calculateNumber(3.3, 1, 'SUM'), 4);
-        //
-        assert.equal(calculateNumber(3, 1.3, 'SUM'), 4);
-        assert.equal(calculateNumber(3, 2.3, 'SUM'), 5);
-        //
-        assert.equal(calculateNumber(3.3, 2.3, 'SUM'), 5);
-        assert.equal(calculateNumber(1.3, 2.8, 'SUM'), 4);
-        assert.equal(calculateNumber(1.1, 1.1, 'SUM'), 2);
-
+describe('when type is SUM', function () {
+    it('test 1', function () {
+        assert.equal(calculateNumber('SUM', 1, 1), 2);
+        assert.equal(calculateNumber('SUM', 1.3, 3), 4);
+        assert.equal(calculateNumber('SUM', 3.3, 1), 4);
     });
+    it('test 2', function () {
+        assert.equal(calculateNumber('SUM', 3, 1.3), 4);
+        assert.equal(calculateNumber('SUM', 3, 2.3), 5);
+    });
+    it('test 3', function () {
+        assert.equal(calculateNumber('SUM', 3.3, 2.3), 5);
+        assert.equal(calculateNumber('SUM', 1.3, 2.8), 4);
+        assert.equal(calculateNumber('SUM', 1.1, 1.1), 2);
+    });
+});  
+
+describe('when type is SUBTRACT', function () {
     it('when type is SUBTRACT', function () {
-        assert.equal(calculateNumber(1.3, 1, 'SUBTRACT'), 0);
+        assert.equal(calculateNumber('SUBTRACT', 1.3, 1), 0);
     });
+
+});  
+
+describe('when type is DIVIDE', function () {
     it('when type is DIVIDE', function () {
-        assert.equal(calculateNumber(1, 0, 'DIVIDE').toLowerCase(), 'error');
-        assert.equal(calculateNumber(1, 0.2, 'DIVIDE').toLowerCase(), 'error');
-        assert.equal(calculateNumber(1, 0.3, 'DIVIDE').toLowerCase(), 'error');
-        assert.equal(calculateNumber(1, 0.4, 'DIVIDE').toLowerCase(), 'error');
-        assert.equal(calculateNumber(1, 0.5, 'DIVIDE'), 1);
+        assert.equal(calculateNumber('DIVIDE', 1, 0).toLowerCase(), 'error');
+        assert.equal(calculateNumber('DIVIDE', 1, 0.2).toLowerCase(), 'error');
+        assert.equal(calculateNumber('DIVIDE', 1, 0.3).toLowerCase(), 'error');
+        assert.equal(calculateNumber('DIVIDE', 1, 0.4).toLowerCase(), 'error');
+        assert.equal(calculateNumber('DIVIDE', 1, 0.5), 1);
+        assert.equal(calculateNumber('DIVIDE', 1.3, 1), 1);
     });
   });
