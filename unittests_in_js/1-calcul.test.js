@@ -1,20 +1,28 @@
 const assert = require('assert');
 const calculateNumber = require('./1-calcul.js');
-const DebugHolberton = require('./debug.js');
-const d = new DebugHolberton('test');
-d.fetch();
 
 describe('calculateNumber', function () {
-    it('test SUM 1+1', function () {
-    assert.equal(calculateNumber(1, 1, 'SUM'), 2);
+    it('when type is SUM', function () {
+        assert.equal(calculateNumber(1, 1, 'SUM'), 2);
+        assert.equal(calculateNumber(1.3, 3, 'SUM'), 4);
+        assert.equal(calculateNumber(3.3, 1, 'SUM'), 4);
+        //
+        assert.equal(calculateNumber(3, 1.3, 'SUM'), 4);
+        assert.equal(calculateNumber(3, 2.3, 'SUM'), 5);
+        //
+        assert.equal(calculateNumber(3.3, 2.3, 'SUM'), 5);
+        assert.equal(calculateNumber(1.3, 2.8, 'SUM'), 4);
+        assert.equal(calculateNumber(1.1, 1.1, 'SUM'), 2);
+
     });
-    it('test SUB 1.3-1', function () {
+    it('when type is SUBTRACT', function () {
         assert.equal(calculateNumber(1.3, 1, 'SUBTRACT'), 0);
     });
-    it('test DIVIDE 1/0', function () {
-        assert.equal(calculateNumber(1, 0, 'DIVIDE'), 'Error');
-    });
-    it('test DIVIDE 2.4/2.4', function () {
-        assert.equal(calculateNumber(2.4, 2.4, 'DIVIDE'), 1);
+    it('when type is DIVIDE', function () {
+        assert.equal(calculateNumber(1, 0, 'DIVIDE').toLowerCase(), 'error');
+        assert.equal(calculateNumber(1, 0.2, 'DIVIDE').toLowerCase(), 'error');
+        assert.equal(calculateNumber(1, 0.3, 'DIVIDE').toLowerCase(), 'error');
+        assert.equal(calculateNumber(1, 0.4, 'DIVIDE').toLowerCase(), 'error');
+        assert.equal(calculateNumber(1, 0.5, 'DIVIDE'), 1);
     });
   });
