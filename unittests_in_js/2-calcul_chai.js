@@ -12,4 +12,4 @@ function calculateNumber(type, a, b) {
     }
 }
 
-export default calculateNumber;
+module.exports = calculateNumber;

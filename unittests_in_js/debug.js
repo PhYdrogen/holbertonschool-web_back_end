@@ -1,12 +1,12 @@
-// const exec = require('node:child_process');
-// const fs = require('node:fs');
-// const path = require('path');
+const exec = require('node:child_process');
+const fs = require('node:fs');
+const path = require('path');
 
-import exec from 'node:child_process';
-import fs from 'node:fs';
-import path from 'path';
+// import exec from 'node:child_process';
+// import fs from 'node:fs';
+// import path from 'path';
 
-export default class DebugHolberton {
+class DebugHolberton {
   constructor(name = 'Anon') {
     this.arr = [];
     this.files = [];
@@ -61,4 +61,6 @@ export default class DebugHolberton {
     console.log(this.arr);
     console.log(this.name);
   }
-};
+}
+
+module.exports = DebugHolberton;
