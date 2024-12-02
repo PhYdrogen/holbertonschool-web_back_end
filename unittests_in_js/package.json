@@ -1,0 +1,11 @@
+{
+    "type": "module",
+    "scripts": {
+        "test": "mocha"
+    },
+    "devDependencies": {
+        "mocha": "^10.8.2",
+        "supabase": "^1.204.3"
+    }
+}
+  
