@@ -1,4 +1,4 @@
-function calculateNumber(type, a, b) {
+module.exports = function calculateNumber(type, a, b) {
     switch (type) {
       case 'SUM':
         return Math.round(a) + Math.round(b);
@@ -11,5 +11,3 @@ function calculateNumber(type, a, b) {
         return Math.round(a) / Math.round(b);
     }
 }
-
-module.exports = calculateNumber;
