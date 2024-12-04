@@ -12,5 +12,8 @@
         "mocha": "^10.8.2",
         "sinon": "^19.0.2",
         "supabase": "^1.204.3"
+    },
+    "dependencies": {
+        "express": "^4.21.1"
     }
 }
