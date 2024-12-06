@@ -11,7 +11,7 @@ describe('test express server', () => {
       done()
     })
   });
-  it('Correct result !', (done) => {
+  it('Correct status code !', (done) => {
     request("http://localhost:7865/", function (error, response, body) {
       expect(response.statusCode).to.equal(200);
       done();
