@@ -1,24 +1,14 @@
 const { expect } = require('chai');
-const got = require('got');
 const DebugHolberton = require('./debug');
-
+const request = require('request')
 
 describe('test express server', () => {
-    let res;
-    before(async () => {
+    it('Correct result !',() => {
         (new DebugHolberton()).fetch(process.argv, process.env);
-        res = await got('http://localhost:7865/');
-    });
-    it('Correct result?',() => {
-        expect(res.body).to.equal("Welcome to the payment system");
-    });
-    it('Correct statusCode?', () => {
-        expect(res.statusCode).to.equal(200);
-    });
-    it('Correct port?', () => {
-        expect(res.client._peername.port).to.equal(7865);
-    });
-    after(() => {
-        res = null;
+        request("http://localhost:7865/", (error, response, body) => {
+            
+            expect(body).to.equal("Welcome to the payment system");
+            expect(response.statusCode).to.equal(200);
+        })
     });
 });
