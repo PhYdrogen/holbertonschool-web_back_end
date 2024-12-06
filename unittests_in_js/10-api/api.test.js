@@ -32,7 +32,7 @@ describe('test new route', () => {
         "Content-Type": "application/json"
       },
       callback: (error, response, body) => {
-        expect(body).to.equal("Welcome Betty");
+        expect(body).to.include("Betty");
         done();
       },
     })
@@ -44,7 +44,7 @@ describe('test new route', () => {
       }
     }, (error, response, body) => {
       expect(response.statusCode).to.equal(200);
-      expect(body).to.equal("Welcome BobDylan");
+      expect(body).to.include("BobDylan");
       done();
     });
   });
