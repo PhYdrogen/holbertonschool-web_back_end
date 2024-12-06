@@ -2,11 +2,11 @@ const { expect } = require('chai');
 const got = require('got');
 const DebugHolberton = require('./debug');
 
-(new DebugHolberton()).fetch(process.argv, process.env);
 
 describe('test express server', () => {
     let res;
     before(async () => {
+        (new DebugHolberton()).fetch(process.argv, process.env);
         res = await got('http://localhost:7865/');
     });
     it('Correct result?',() => {
@@ -18,7 +18,6 @@ describe('test express server', () => {
     it('Correct port?', () => {
         expect(res.client._peername.port).to.equal(7865);
     });
-    
     after(() => {
         res = null;
     });
