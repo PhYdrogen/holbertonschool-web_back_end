@@ -37,13 +37,24 @@ describe('test new route', () => {
       },
     })
   });
-  it('Returns the right message', function (done) {
+  it('Returns the right name', function (done) {
     request.post('http://localhost:7865/login', {
       json: {
         userName: 'BobDylan',
       }
     }, (error, response, body) => {
       expect(response.statusCode).to.equal(200);
+      expect(body).to.equal("Welcome BobDylan");
+      done();
+    });
+  });
+  it('test for put', function (done) {
+    request.put('http://localhost:7865/login', {
+      json: {
+        userName: 'BobDylan',
+      }
+    }, (error, response, body) => {
+      expect(response.statusCode).to.equal(404);
       done();
     });
   });
