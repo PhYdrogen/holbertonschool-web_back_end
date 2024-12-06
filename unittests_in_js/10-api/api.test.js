@@ -6,22 +6,28 @@ describe('test new route', () => {
   (new DebugHolberton()).fetch(process.argv, process.env);
   it('check payment', (done) => {
     request("http://localhost:7865/available_payments", (error, response, body) => {
-      expect(body).to.eql(JSON.stringify({
+      expect(JSON.parse(body)).to.deep.equal({
         payment_methods: {
           credit_cards: true,
           paypal: false
         }
-      }));
+      });
       done()
     })
+  });
+  it('check payment status code', (done) => {
+    request('http://localhost:7865/available_payments', (error, response, body) => {
+      expect(response.statusCode).to.equal(200);
+      done();
+    });
   });
   it('check post login', (done) => {
     request({
       uri: "http://localhost:7865/login",
       method: "POST",
-      body: JSON.stringify({
+      json:{
         userName: "Betty"
-      }),
+      },
       headers: {
         "Content-Type": "application/json"
       },
@@ -30,5 +36,15 @@ describe('test new route', () => {
         done();
       },
     })
+  });
+  it('Returns the right message', function (done) {
+    request.post('http://localhost:7865/login', {
+      json: {
+        userName: 'BobDylan',
+      }
+    }, (error, response, body) => {
+      expect(response.statusCode).to.equal(200);
+      done();
+    });
   });
 });
