@@ -3,3 +3,10 @@ main.py
 *.pyc
 **/node_modules/
 **/package-lock.json
+unittests_in_js/10-api/hbtn_test_0.test.js
+unittests_in_js/10-api/hbtn_test_1.test.js
+unittests_in_js/10-api/hbtn_test_2.test.js
+unittests_in_js/10-api/hbtn_test_3.test.js
+unittests_in_js/10-api/hbtn_test_4.test.js
+unittests_in_js/10-api/hbtn_test_5.test.js
+unittests_in_js/10-api/hbtn_test_6.test.js
